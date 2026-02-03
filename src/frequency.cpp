@@ -1,64 +1,114 @@
-#include "harmony.hpp"
+﻿//******** Copyright � 2026 Jishnu Periya, Jonathon Bell. All rights reserved.
+//*
+//*
+//*  Version : $Header:$
+//*
+//*
+//*  Purpose : Implementation for class `harmony::frequency`.
+//*
+//*
+//****************************************************************************
 
 #include <cassert>      //for assert
 #include <cmath>        //for fabs
-#include <stdexcept>    //for std::inalid_argument
+#include <stdexcept>    //for inalid_argument
 
-harmony::frequency::frequency(double hz)
-  : hz_{hz}
+#include "harmony.hpp"
+
+//****************************************************************************
+namespace harmony{
+//****************************************************************************
+
+/**
+* Construct a frequency from a postive real number of Hertz.
+*
+* @param hz Frequency in Hertz (default: 440.0 Hz)
+*/
+frequency::frequency(double hz)
+         : hz_{hz}
 {
   assert(hz_ > 0.0 && "frequency must stay positive");
 }
 
-double harmony::frequency::get_hz() const
+/**
+ * Return the underlying Frequency in Hertz.
+ */
+double frequency::get_hz() const
 {
   return hz_;
 }
 
-uint8_t harmony::frequency::get_midi() const
+/**
+ * Return the nearest MIDI note numbeer.
+ *
+ * @see [Here](https://computermusicresource.com/midikeys.html)
+ *      for more on MIDI note numbers.
+ */
+uint8_t frequency::get_midi() const
 {
   return static_cast<uint8_t>(std::round(69 + 12 * std::log2(hz_ / 440.0)));
 }
 
-harmony::pitch harmony::frequency::get_pitch() const
+/**
+ * Return the nearest even tempered pitch.
+ *
+ * @see [Here](https://en.wikipedia.org/wiki/Equal_temperament)
+ *      for more on the even temperement tuning system.
+ */
+pitch frequency::get_pitch() const
 {
-  // Convert to nearest MIDI note number.
-  return pitch(static_cast<int>(std::round(69 + 12 * std::log2(hz_ / 440.0))));
+  return pitch(get_midi());
 }
 
-harmony::frequency& harmony::frequency::operator*=(double delta_hz)
+/**
+* Scale the frequency by a multiplicative factor.
+*/
+frequency& frequency::operator*=(double delta_hz)
 {
   hz_*=delta_hz;
   assert(hz_ > 0.0 && "frequency must stay positive");
   return *this;
 }
 
-harmony::frequency& harmony::frequency::operator/=(double delta_hz)
+/**
+* Scale the frequency by a divisive factor.
+*/
+frequency& frequency::operator/=(double delta_hz)
 {
   hz_/=delta_hz;
   assert(hz_ > 0.0 && "frequency must stay positive");
   return *this;
 }
 
-harmony::frequency harmony::operator*(harmony::frequency lhs,double factor)
+/**
+* Scale the frequency by a multiplicative factor.
+*/
+frequency operator*(frequency lhs,double factor)
 {
-  return harmony::frequency(lhs.get_hz()*factor);
+  return frequency(lhs.get_hz()*factor);
 }
 
-harmony::frequency harmony::operator/(harmony::frequency lhs,double factor)
+/**
+* Scale the frequency by a divisive factor.
+*/
+frequency operator/(frequency lhs,double factor)
 {
-  return harmony::frequency(lhs.get_hz()/factor);  
+  return frequency(lhs.get_hz()/factor);  
 }
 
-bool harmony::is_octave_equivalent(frequency lhs, frequency rhs)
+/**
+* Check if two frequencies are octave equivalent.
+*/
+bool is_octave_equivalent(frequency lhs, frequency rhs)
 {
-  // Octave equivalent if base-2 logarithm of the frequency ratio is an integer
   double freq_ratio = std::log2(lhs.get_hz()/rhs.get_hz());
-  // Check if 'freq_ratio' is effectively an integer.
   return std::fabs(freq_ratio - std::round(freq_ratio)) < 1e-9;
 }
 
-std::ostream& harmony::operator<<(std::ostream& os, harmony::frequency f)
+/**
+* Output frequency in Hertz to output stream.
+*/
+std::ostream& operator<<(std::ostream& os, frequency f)
 {
    return os << f.get_hz();
 }
