@@ -131,7 +131,6 @@ namespace harmony{
   bool          is_octave_equivalent(note, note);
   std::ostream& operator<<(std::ostream&, note);
 
-
 //****************************************************************************
 } // namespace harmony
 //****************************************************************************
