@@ -26,7 +26,8 @@ int main(int, const char* [])
 {
 	using namespace harmony;
 
-  note_set c_major{ note{0}, note{4}, note{7} };
+  std::cout << "Harmony Library Test Runner\n";
+ /* note_set c_major{ note{0}, note{4}, note{7} };
 
   note_set extensions{ note{9}, note{11} };
 
@@ -35,7 +36,7 @@ int main(int, const char* [])
   for(note_set::iterator it = c_major_plus.begin(); it != c_major_plus.end(); ++it)
   {
       std::cout << it->name() << " ";
-  }
+  }*/
   return 0;
 }
 

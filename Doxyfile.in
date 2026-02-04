@@ -1,0 +1,22 @@
+PROJECT_NAME           = @PROJECT_NAME@
+PROJECT_NUMBER         = @PROJECT_VERSION@
+PROJECT_BRIEF          = "Harmony music theory library"
+
+OUTPUT_DIRECTORY       = @CMAKE_BINARY_DIR@/docs
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+
+INPUT                  = @CMAKE_SOURCE_DIR@/src
+RECURSIVE              = YES
+
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+
+HAVE_DOT               = NO
+UML_LOOK               = YES
+CLASS_DIAGRAMS         = YES
+CALL_GRAPH             = NO
+CALLER_GRAPH           = NO
+
+QUIET                  = YES
