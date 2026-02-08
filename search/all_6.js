@@ -9,5 +9,6 @@ var searchData=
   ['get_5fpitch_6',['get_pitch',['../classharmony_1_1frequency.html#a5239d0cebcf1ec4485f55704fb32180b',1,'harmony::frequency::get_pitch()'],['../classharmony_1_1note.html#a8bd5ee38d733cf06aaf1446eba0d33dc',1,'harmony::note::get_pitch()']]],
   ['get_5fpitches_7',['get_pitches',['../classharmony_1_1chord.html#a8457a583b51012e53fa7f520198feac5',1,'harmony::chord']]],
   ['get_5froot_8',['get_root',['../classharmony_1_1scale.html#af5b1af7f92eeef555d8a2e86fa49f8ae',1,'harmony::scale']]],
-  ['get_5fscale_9',['get_scale',['../classharmony_1_1scale__type.html#ac83f4c78e80424d847ffae0b4c6f989a',1,'harmony::scale_type']]]
+  ['get_5fscale_9',['get_scale',['../classharmony_1_1scale__type.html#ac83f4c78e80424d847ffae0b4c6f989a',1,'harmony::scale_type']]],
+  ['goals_10',['Goals',['../md__r_e_a_d_m_e.html#autotoc_md1',1,'']]]
 ];

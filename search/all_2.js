@@ -7,5 +7,6 @@ var searchData=
   ['chords_4',['chords',['../classharmony_1_1chord__progression.html#af6f66ddca49c75f6d20471397736447d',1,'harmony::chord_progression']]],
   ['chords_5f_5',['chords_',['../classharmony_1_1chord__progression.html#aa9d1dd151e0020e89ea39318ef381603',1,'harmony::chord_progression']]],
   ['clear_6',['clear',['../classharmony_1_1note__set.html#aea85ce35069f23da08b5ea0285a24e8e',1,'harmony::note_set']]],
-  ['contains_7',['contains',['../classharmony_1_1note__set.html#a144f2e580fd5bce5a6e35cd89a0bbcdd',1,'harmony::note_set']]]
+  ['contains_7',['contains',['../classharmony_1_1note__set.html#a144f2e580fd5bce5a6e35cd89a0bbcdd',1,'harmony::note_set']]],
+  ['contributors_8',['Contributors',['../md__r_e_a_d_m_e.html#autotoc_md7',1,'']]]
 ];

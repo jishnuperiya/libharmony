@@ -25,6 +25,16 @@
 var NAVTREE =
 [
   [ "harmony-lib", "index.html", [
+    [ "harmony-lib", "md__r_e_a_d_m_e.html", [
+      [ "Goals", "md__r_e_a_d_m_e.html#autotoc_md1", null ],
+      [ "Project Layout", "md__r_e_a_d_m_e.html#autotoc_md2", null ],
+      [ "Prerequisites", "md__r_e_a_d_m_e.html#autotoc_md3", [
+        [ "MacOS:", "md__r_e_a_d_m_e.html#autotoc_md4", null ]
+      ] ],
+      [ "Building", "md__r_e_a_d_m_e.html#autotoc_md5", null ],
+      [ "Running", "md__r_e_a_d_m_e.html#autotoc_md6", null ],
+      [ "Contributors", "md__r_e_a_d_m_e.html#autotoc_md7", null ]
+    ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -59,7 +69,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"patterns_8hpp.html#abdf291934301c0fed3874e9e1e438931"
+"note_8cpp.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';
