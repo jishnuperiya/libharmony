@@ -5,6 +5,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "frequency.cpp", "frequency_8cpp.html", "frequency_8cpp" ],
     [ "harmony.hpp", "harmony_8hpp.html", "harmony_8hpp" ],
     [ "main.cpp", "main_8cpp.html", "main_8cpp" ],
+    [ "mainpage.hpp", "mainpage_8hpp.html", null ],
     [ "note.cpp", "note_8cpp.html", "note_8cpp" ],
     [ "note_set.hpp", "note__set_8hpp.html", "note__set_8hpp" ],
     [ "patterns.hpp", "patterns_8hpp.html", "patterns_8hpp" ],

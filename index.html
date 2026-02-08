@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.16.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>harmony-lib: Main Page</title>
+<title>harmony-lib: libharmony</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -88,10 +88,51 @@ $(function(){initNavTree('index.html','',''); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">harmony-lib Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">libharmony </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><h1 class="doxsection"><a class="anchor" id="overview"></a>
+Overview</h1>
+<p><b>libharmony</b> is a C++ library for symbolic domain modeling of music-theory concepts.</p>
+<p>The library provides types and operations for representing musical structure, including notes, pitch classes, intervals, scales, modes, and finite sets of pitch classes. Its scope is limited to representation and transformation; it does not perform audio processing, MIDI I/O, or visualization.</p>
+<p>libharmony is intended to serve as a small, reusable domain layer that can be embedded in larger systems.</p>
+<h1 class="doxsection"><a class="anchor" id="goals"></a>
+Goals</h1>
+<ul>
+<li>Provide a symbolic model of core music-theory concepts</li>
+<li>Enable explicit reasoning about scales and pitch-class sets</li>
+<li>Support transformational and set-based operations on musical structures</li>
+<li>Remain independent of audio frameworks and application architecture</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="build"></a>
+Building</h1>
+<p>The project uses CMake and requires a C++20-compliant compiler.</p>
+<p>Example build steps:</p>
+<div class="fragment"><div class="line">mkdir .bld</div>
+<div class="line">cd .bld</div>
+<div class="line">cmake ..</div>
+<div class="line">make -j</div>
+</div><!-- fragment --><p>To list available build targets:</p>
+<div class="fragment"><div class="line">make help</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="running"></a>
+Running</h1>
+<p>To run the test harness:</p>
+<div class="fragment"><div class="line">./<a class="code hl_namespace" href="namespaceharmony.html">harmony</a>-test</div>
+<div class="ttc" id="anamespaceharmony_html"><div class="ttname"><a href="namespaceharmony.html">harmony</a></div><div class="ttdef"><b>Definition</b> chord.hpp:17</div></div>
+</div><!-- fragment --><p>To run the example executable:</p>
+<div class="fragment"><div class="line">./<a class="code hl_namespace" href="namespaceharmony.html">harmony</a></div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="status"></a>
+Status</h1>
+<p>libharmony is under active development. <br  />
+ Public interfaces may evolve as the model stabilizes.</p>
+<h1 class="doxsection"><a class="anchor" id="contributors"></a>
+Contributors</h1>
+<ul>
+<li>Jishnu Periya — <a href="#" onclick="location.href='mai'+'lto:'+'jis'+'hn'+'upe'+'ri'+'ya@'+'gm'+'ail'+'.c'+'om'; return false;">jishn<span class="obfuscator">.nosp@m.</span>uper<span class="obfuscator">.nosp@m.</span>iya@g<span class="obfuscator">.nosp@m.</span>mail<span class="obfuscator">.nosp@m.</span>.com</a></li>
+<li>Jonathon Bell — <a href="#" onclick="location.href='mai'+'lto:'+'jon'+'at'+'hon'+'.b'+'ell'+'@g'+'mai'+'l.'+'com'; return false;">jonat<span class="obfuscator">.nosp@m.</span>hon.<span class="obfuscator">.nosp@m.</span>bell@<span class="obfuscator">.nosp@m.</span>gmai<span class="obfuscator">.nosp@m.</span>l.com</a> </li>
+</ul>
+</div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
 </div><!-- doc-content -->

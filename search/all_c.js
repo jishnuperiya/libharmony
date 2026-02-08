@@ -20,5 +20,6 @@ var searchData=
   ['operator_3c_3d_3e_17',['operator&lt;=&gt;',['../classharmony_1_1note__set_1_1iterator.html#abec060ff7e33dcc85b770e4c5ef56453',1,'harmony::note_set::iterator']]],
   ['operator_3d_3d_18',['operator==',['../classharmony_1_1note__set.html#a4c070eb07620104883e902b401950c90',1,'harmony::note_set::operator==()'],['../namespaceharmony.html#ae967e8867eb99fb2bf0c7b414583dec4',1,'harmony::operator==(note, note)']]],
   ['operator_7c_19',['operator|',['../namespaceharmony.html#a9cab5960c87a2dcbd2616141051f70d3',1,'harmony']]],
-  ['operator_7c_3d_20',['operator|=',['../classharmony_1_1note__set.html#a9955165cc81878fbdbc8f9e8c545d2d0',1,'harmony::note_set']]]
+  ['operator_7c_3d_20',['operator|=',['../classharmony_1_1note__set.html#a9955165cc81878fbdbc8f9e8c545d2d0',1,'harmony::note_set']]],
+  ['overview_21',['Overview',['../index.html#overview',1,'']]]
 ];

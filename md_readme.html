@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.16.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>harmony-lib: Related Pages</title>
+<title>harmony-lib: harmony-lib</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-$(function(){initNavTree('pages.html','',''); });
+$(function(){initNavTree('md_readme.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -88,17 +88,56 @@ $(function(){initNavTree('pages.html','',''); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">Related Pages</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">harmony-lib </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock">Here is a list of all related documentation pages:</div><div class="directory">
-<table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="md_readme.html" target="_self">harmony-lib</a></td><td class="desc"></td></tr>
-</table>
-</div><!-- directory -->
-</div><!-- contents -->
+<div class="textblock"><p><a class="anchor" id="autotoc_md0"></a></p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
+Goals</h1>
+<p>Library for Symbolic Domain Modeling</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+Project Layout</h1>
+<p>To get up and running quickly, and without knowing more about just what actual libraries and executables we will need, I have made some arbitrary choices, all of which can be changed later as needed:</p>
+<ul>
+<li><em>harmony-lib</em>: a static link library that contains the bulk of the code we will write together.</li>
+<li><em>harmony-test</em>: a doctest-based harness that links against <em>jishnu-lib</em>.</li>
+<li><em>harmony</em>: an executable that links against <em>jishnu-lib</em>.</li>
+</ul>
+<p>The test harnesses implements a rich command line interface, and is RapidCheck enabled.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+Prerequisites</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+MacOS:</h2>
+<pre class="fragment">sudo port -N install clang-20 cmake doxygen
+</pre><h1 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+Building</h1>
+<pre class="fragment">mkdir .bld
+cd .bld
+cmake ..
+make -j
+</pre><p>Also: </p><pre class="fragment">make help
+</pre><p>to see a list of possible of build targets.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+Running</h1>
+<p>To run the <em>harmony</em> test harness: </p><pre class="fragment">./harmony-test
+</pre><p>To run the <em>harmony</em> executable: </p><pre class="fragment">./harmony
+</pre><h1 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+Contributors</h1>
+<ul>
+<li><a href="#" onclick="location.href='mai'+'lto:'+'jis'+'hn'+'upe'+'ri'+'ya@'+'gm'+'ail'+'.c'+'om'; return false;">jishn<span class="obfuscator">.nosp@m.</span>uper<span class="obfuscator">.nosp@m.</span>iya@g<span class="obfuscator">.nosp@m.</span>mail<span class="obfuscator">.nosp@m.</span>.com</a></li>
+<li><a href="#" onclick="location.href='mai'+'lto:'+'jon'+'at'+'hon'+'.b'+'ell'+'@g'+'mai'+'l.'+'com'; return false;">jonat<span class="obfuscator">.nosp@m.</span>hon.<span class="obfuscator">.nosp@m.</span>bell@<span class="obfuscator">.nosp@m.</span>gmai<span class="obfuscator">.nosp@m.</span>l.com</a> </li>
+</ul>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
 </div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
 </div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

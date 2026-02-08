@@ -7,5 +7,6 @@ var searchData=
   ['scale_5ftype_2ehpp_4',['scale_type.hpp',['../scale__type_8hpp.html',1,'']]],
   ['scales_5',['scales',['../namespaceharmony_1_1patterns.html#abe1f208b268f1e592e1d7c1487f8e77c',1,'harmony::patterns']]],
   ['size_6',['size',['../classharmony_1_1note__set.html#a4efd7a31ac258274dde92094cb0f6899',1,'harmony::note_set']]],
-  ['size_5ftype_7',['size_type',['../classharmony_1_1note__set.html#acef3bd5a75ce25fec39df4b9c0350e9e',1,'harmony::note_set']]]
+  ['size_5ftype_7',['size_type',['../classharmony_1_1note__set.html#acef3bd5a75ce25fec39df4b9c0350e9e',1,'harmony::note_set']]],
+  ['status_8',['Status',['../index.html#status',1,'']]]
 ];
