@@ -126,7 +126,7 @@ namespace harmony
     {
       p(s);
     }*/ 
-    inline std::vector<scale_entry> find_all(const predicate& pred)
+    [[nodiscard]]inline std::vector<scale_entry> find_all(const predicate& pred)
     {
       std::vector<scale_entry> result;
 
