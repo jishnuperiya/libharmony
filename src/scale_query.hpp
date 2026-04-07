@@ -49,7 +49,7 @@ namespace harmony
     {
       return [n](const structure& s)
         {
-          return s.cardinalitity() == n;
+          return s.cardinality() == n;
         };
     }
 

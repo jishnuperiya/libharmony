@@ -40,7 +40,7 @@ namespace harmony{
     structure                 mode(int degree)            const;
 
   public:                   // Queries
-    int                       cardinalitity()             const;
+    int                       cardinality()             const;
     bool                      contains(int interval)      const;
     //bool                      is_rotationally_symmetric() const;
     bool                      has_tritone()               const; //should i need queries for maj3, min3 etc. so each interval qualities? or do i calclulate it on spot??
