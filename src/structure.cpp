@@ -42,7 +42,7 @@ namespace harmony{
     for (auto interval : pattern)
     {
       // normalize interval to [0, 11] 
-      result.set(static_cast<std::size_t>(interval % 12 + 12) % 12);
+      result.set(static_cast<std::size_t>((interval % 12 + 12) % 12));
     }
     return result;
   }
@@ -126,12 +126,43 @@ namespace harmony{
     // - assertions are disabled in runtime and for that throw is better
     // - but user of this API would be probably other programmers-- so for them assertions are enough??
   
+    // QUESTION: is throwing exceptions bad? 
     auto rotated = (intervals_ >> pivot) | (intervals_ << (12 - pivot));
 
     return structure(rotated);
  
   }
 
+  int structure::cardinalitity() const
+  {
+    return static_cast<int>(intervals_.count());
+  }
+
+  bool structure::contains(int interval) const
+  {
+    return intervals_.test(static_cast<std::size_t>((interval % 12 + 12) % 12));
+  }
+
+  bool structure::has_tritone() const
+  {
+    return contains(6);
+  }
+
+  // Based on the theories of B P Leonard, Brightness is a 
+  // measurement of interval content calculated by taking the sum of 
+  // each tone's distance from the root
+  int structure::brightness() const   // think: can i optimize this??
+  {
+    int brightness = 0;
+    for (int i = 0; i < 12; ++i)
+    {
+      if (contains(i) && i != 0)
+      {
+        brightness += i;
+      }
+    }
+    return brightness;
+  }
 
 //****************************************************************************
 } // namespace harmony

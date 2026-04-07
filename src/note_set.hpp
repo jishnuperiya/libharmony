@@ -1,4 +1,4 @@
-//******** Copyright © 2025 Jishnu Periya, Jonathon Bell. All rights reserved.
+//******** Copyright ï¿½ 2025 Jishnu Periya, Jonathon Bell. All rights reserved.
 //*
 //*
 //*  Version : $Header:$
@@ -11,12 +11,12 @@
 #pragma once
 //****************************************************************************
 
-#include<set>									     // For set
-#include<utility>							     // For pair
-#include<bitset>                   // For bitset
-#include<cstdint>							     // For uint8_t
-#include<iterator>                 // For reverse_iterator
-#include<compare>  						     // For operator<=>
+#include<set>									  // For set
+#include<utility>							      // For pair
+#include<bitset>                   			      // For bitset
+#include<cstdint>							      // For uint8_t
+#include<iterator>                 				  // For reverse_iterator
+#include<compare>  						          // For operator<=>
 
 #include "harmony.hpp"						 
 
@@ -295,7 +295,7 @@ namespace harmony{
 		    while (index_ < 12 && bits_ && !bits_->test(index_))
 		    {
 			    ++index_;
-	      }
+	      	}
 		  }
 
 		 /**
@@ -321,7 +321,7 @@ namespace harmony{
 	*/
 	[[nodiscard]] constexpr note_set operator|(note_set lhs, const note_set& rhs) noexcept
 	{
-    return lhs|= rhs;
+      return lhs|= rhs;
 	}
 
  /**
@@ -329,7 +329,7 @@ namespace harmony{
 	*/
 	[[nodiscard]] constexpr note_set operator&(note_set lhs, const note_set& rhs) noexcept
 	{
-		return lhs &= rhs;
+	  return lhs &= rhs;
 	}
 
 //****************************************************************************

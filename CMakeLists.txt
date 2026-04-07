@@ -50,7 +50,8 @@ add_library(harmony-lib STATIC
   src/chord.cpp
   src/progression.cpp
   src/structure.cpp 
-  src/scale.cpp)
+  src/scale.cpp
+  )
 
 target_link_libraries(harmony-lib)
 

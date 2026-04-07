@@ -43,6 +43,7 @@ std::vector<pitch> chord::get_pitches(int octave) const
   return result;
 }
 
+
 std::ostream& harmony::operator<<(std::ostream& os, const chord& c) 
 {
   os << c.name();

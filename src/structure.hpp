@@ -36,15 +36,25 @@ namespace harmony{
 
 
   public:                   // Operations
-    scale                     make_scale(note root) const; 
-    structure                 mode(int degree) const;
+    scale                     make_scale(note root)       const; 
+    structure                 mode(int degree)            const;
 
-  private:                 // Helper functions
+  public:                   // Queries
+    int                       cardinalitity()             const;
+    bool                      contains(int interval)      const;
+    //bool                      is_rotationally_symmetric() const;
+    bool                      has_tritone()               const; //should i need queries for maj3, min3 etc. so each interval qualities? or do i calclulate it on spot??
+    //bool                      is_maximally_even()         const;
+    int                       brightness()                const;
+    //get name
+  private:                  // Helper functions
     static std::bitset<12>    build_intervals(std::initializer_list<int> pattern);
 
   private:                  // Representation
     std::bitset<12>           intervals_; 
-    
+    //name
+    // 
+  
     // QUESTION:
     // when we design value types/ types with value semantics, does it make sense to make intervals_ const?? 
     // scott meyers says make everything const if pssible.

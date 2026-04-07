@@ -9,17 +9,36 @@
 //*
 //****************************************************************************
 #include <iostream>                 // For cout
+#include <iomanip>
                           
 #include "structure.hpp"            // For structure
+#include "scale_query.hpp"
 //****************************************************************************
 
 using namespace harmony;
+using namespace harmony::query;
+
 int main()
 {
 
-  structure major{ 0, 2, 4, 5, 7, 9, 11 };
+  // Query 1: All 7-note scales with a tritone 
+  {
+    // auto results = find_all_2(
+    //   cardinality(7) && has_tritone() 
+    // );
 
-  std::cout << major.mode(4).make_scale(note{"C"}) << std::endl; // TODO: currently the note takes only Uppercase note names
+    // auto results = find_all_2(
+    //   [](const scale_entry& s) { return s.pattern.cardinalitity() == 7 && s.pattern.has_tritone(); }cardinality(7) && has_tritone()
+
+
+    // );
+    auto results2 = find_all(
+      cardinality(7) && has_interval(3) && has_interval(4)
+    );
+    
+    std::cout << "hi" << std::endl;
+  }
+
 
   return 0;
 }
