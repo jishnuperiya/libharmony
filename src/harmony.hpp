@@ -22,6 +22,8 @@
 namespace harmony{
 //****************************************************************************
 
+  constexpr int SEMITONES_IN_OCTAVE = 12;
+  
   class frequency;
   class pitch;
   class note;

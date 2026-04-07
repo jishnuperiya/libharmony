@@ -133,7 +133,7 @@ namespace harmony{
  
   }
 
-  int structure::cardinalitity() const
+  int structure::cardinality() const
   {
     return static_cast<int>(intervals_.count());
   }
