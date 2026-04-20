@@ -15,7 +15,13 @@
 namespace harmony::scale_database{
 //****************************************************************************
 
-  const std::vector<scale_entry>& catalog()
+/**
+ * Return a reference to the static catalog of built-in scale entries.
+ *
+ * The catalog is lazily initialized on first call and includes pentatonic,
+ * hexatonic, heptatonic, octatonic, and chromatic scales.
+ */
+  const std::vector<scale_entry>& catalog()                          //? return span from catalog?
   {
     static std::vector<scale_entry> scales = {
       // Pentatonic scales (5 notes)
@@ -61,7 +67,13 @@ namespace harmony::scale_database{
     return scales;
   }
 
-  const scale_entry* find_by_name(std::string_view name)
+/**
+ * Look up a scale entry by name.
+ *
+ * @param name  The name to search for (case-sensitive, exact match).
+ * @return      Pointer to the matching entry, or nullptr if not found.
+ */
+  const scale_entry* find_by_name(std::string_view name)         //? should i use std::optional? what is the cost-- how to think about the cost
   {
     const auto& scales = catalog();
     for (const auto& entry : scales)
@@ -74,6 +86,9 @@ namespace harmony::scale_database{
     return nullptr;
   }
 
+/**
+ * Return the number of entries in the catalog.
+ */
   size_t size()
   {
     return catalog().size();

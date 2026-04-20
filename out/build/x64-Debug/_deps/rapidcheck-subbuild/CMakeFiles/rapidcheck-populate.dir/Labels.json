@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/git-repo/libharmony/out/build/x64-Debug/_deps/rapidcheck-subbuild/CMakeFiles/rapidcheck-populate"
+		},
+		{
+			"file" : "C:/git-repo/libharmony/out/build/x64-Debug/_deps/rapidcheck-subbuild/CMakeFiles/rapidcheck-populate.rule"
+		},
+		{
+			"file" : "C:/git-repo/libharmony/out/build/x64-Debug/_deps/rapidcheck-subbuild/CMakeFiles/rapidcheck-populate-complete.rule"
+		},
+		{
+			"file" : "C:/git-repo/libharmony/out/build/x64-Debug/_deps/rapidcheck-subbuild/rapidcheck-populate-prefix/src/rapidcheck-populate-stamp/rapidcheck-populate-build.rule"
+		},
+		{
+			"file" : "C:/git-repo/libharmony/out/build/x64-Debug/_deps/rapidcheck-subbuild/rapidcheck-populate-prefix/src/rapidcheck-populate-stamp/rapidcheck-populate-configure.rule"
+		},
+		{
+			"file" : "C:/git-repo/libharmony/out/build/x64-Debug/_deps/rapidcheck-subbuild/rapidcheck-populate-prefix/src/rapidcheck-populate-stamp/rapidcheck-populate-download.rule"
+		},
+		{
+			"file" : "C:/git-repo/libharmony/out/build/x64-Debug/_deps/rapidcheck-subbuild/rapidcheck-populate-prefix/src/rapidcheck-populate-stamp/rapidcheck-populate-install.rule"
+		},
+		{
+			"file" : "C:/git-repo/libharmony/out/build/x64-Debug/_deps/rapidcheck-subbuild/rapidcheck-populate-prefix/src/rapidcheck-populate-stamp/rapidcheck-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/git-repo/libharmony/out/build/x64-Debug/_deps/rapidcheck-subbuild/rapidcheck-populate-prefix/src/rapidcheck-populate-stamp/rapidcheck-populate-patch.rule"
+		},
+		{
+			"file" : "C:/git-repo/libharmony/out/build/x64-Debug/_deps/rapidcheck-subbuild/rapidcheck-populate-prefix/src/rapidcheck-populate-stamp/rapidcheck-populate-test.rule"
+		},
+		{
+			"file" : "C:/git-repo/libharmony/out/build/x64-Debug/_deps/rapidcheck-subbuild/rapidcheck-populate-prefix/src/rapidcheck-populate-stamp/rapidcheck-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"rapidcheck-populate"
+		],
+		"name" : "rapidcheck-populate"
+	}
+}

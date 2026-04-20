@@ -1,0 +1,9 @@
+Name: rapidcheck
+Description: C++ framework for property based testing inspired by QuickCheck and other similar frameworks
+Version: 
+Requires: 
+prefix=C:/git-repo/libharmony/out/install/x64-Debug
+includedir=${prefix}/include
+libdir=${prefix}/lib
+Libs: 
+Cflags: -I${includedir}
