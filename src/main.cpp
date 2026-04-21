@@ -10,37 +10,50 @@
 //****************************************************************************
 #include <iostream>                 // For cout
 #include <iomanip>
+#include <chrono>                   // For timing
                           
 #include "structure.hpp"            // For structure
 #include "scale_query.hpp"
+#include "scale_query_t.hpp"
 //****************************************************************************
-
-using namespace harmony;
-using namespace harmony::query;
 
 int main()
 {
+    const int ITERATIONS = 1000000;
 
-  // Query 1: All 7-note scales with a tritone 
-  {
-    // auto results = find_all_2(
-    //   cardinality(7) && has_tritone() 
-    // );
+    // --- Benchmark 1: std::function version ---
+    {
+      using namespace harmony::query;
 
-    // auto results = find_all_2(
-    //   [](const scale_entry& s) { return s.pattern.cardinalitity() == 7 && s.pattern.has_tritone(); }cardinality(7) && has_tritone()
+      auto start = std::chrono::high_resolution_clock::now();
+      for(int i = 0; i < ITERATIONS; ++i)
+      {
+        auto results = find_all(
+          cardinality(7) && has_tritone() 
+        );
+      } 
+      auto end = std::chrono::high_resolution_clock::now();
+      auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+      std::cout << "std::function : " << ms << " ms\n";
+    }
 
+    // --- Benchmark 2: template/concept version ---
+    {
+      using namespace harmony::tquery;
 
-    // );
-    auto results2 = find_all(
-      cardinality(7) && has_interval(3) && has_interval(4)
-    );
-    
-    std::cout << "hi" << std::endl;
-  }
+      auto start = std::chrono::high_resolution_clock::now();
+      for(int i = 0; i < ITERATIONS; ++i)
+      {
+        auto results = find_all(
+          cardinality(7) && has_tritone() 
+        );
+      }
+      auto end = std::chrono::high_resolution_clock::now();
+      auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+      std::cout << "template/concept: " << ms << " ms\n";
+    }
 
-
-  return 0;
+ return 0;
 }
 
 

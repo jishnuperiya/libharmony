@@ -13,39 +13,56 @@
 
 #include <functional>
 #include <vector>
+#include <optional>
 
 #include "structure.hpp"
 #include "scale_database.hpp"
 
 //****************************************************************************
-namespace harmony
-{
-  namespace query
-  {
-    //****************************************************************************
+namespace harmony{
+  namespace query{
+//****************************************************************************
 
-    using predicate = std::function<bool(const structure&)>; 
-    // change it into concepts
+    using predicate         = std::function<bool(const structure&)>;
 
-    /*
-    concept - constraint- callable obj and return bool and dervied from structure
+    template<typename P>
+    concept structure_predicate = std::is_invocable_r_v<bool, P, const structure&>;
 
-    */
+    using optional_scale_entry = std::optional<const scale_entry&>;
 
-    // QUESTION: for the predicates - should i go for templates type deduction or
-    //           polymorphic function wrapper like this one? arent our queries runtime in nature?
-    //           --dont have the clarity of performance tradeoff with this one--
+                              // Predicate factories
 
-    /*
-    let S,T,U be some set
-    S x S cartesian prod of set S by itself std::pair<S,S>
-    S x T cartesian prod of S with T modelled by std::pair<S,T>
-    (S x T) -> U denotes fun space with domain SxT and co domain U
-    S -> (T->U) dnotes set of functions that map elements of S to fucntions from T  to U
-    todo: proof of isomorphism
-    */
+    inline auto               cardinality(int n);
+    inline auto               has_interval(int interval);
+    inline auto               has_tritone();
+    inline auto               brightness_range(int min_brightness, int max_brightness);
 
-    inline predicate cardinality(int n)  //currying-lookup wiki (lambda calculus) alonso church
+                              // Combinators
+
+                              template<structure_predicate A, structure_predicate B>
+    inline auto               operator&&(A a, B b);
+
+                              template<structure_predicate A, structure_predicate B>
+    inline auto               operator||(A a, B b);
+
+                              template<structure_predicate A>
+    inline auto               operator!(A a);
+
+
+                              // Search
+
+    optional_scale_entry      find_first(const predicate& pred); // check std:either<a,b>
+    std::vector<scale_entry>  find_all(const predicate& pred);    
+ 
+    //***************************************************************************
+    // Predicate factories implementations
+    //***************************************************************************
+    /**
+     * Return a predicate that matches scales with exactly n notes.
+     *
+     * @param n  The desired note count (e.g. 5 for pentatonic, 7 for heptatonic).
+     */
+    inline auto cardinality(int n)
     {
       return [n](const structure& s)
         {
@@ -53,8 +70,12 @@ namespace harmony
         };
     }
 
- 
-    inline predicate has_interval(int interval)
+    /**
+     * Return a predicate that matches scales containing a specific interval.
+     *
+     * @param interval  The semitone interval to look for (0–11).
+     */
+    inline auto has_interval(int interval)
     {
       return [interval](const structure& s)
         {
@@ -62,7 +83,10 @@ namespace harmony
         };
     }
 
-    inline predicate has_tritone()
+    /**
+     * Return a predicate that matches scales containing a tritone (interval 6).
+     */
+    inline auto has_tritone()
     {
       return [](const structure& s)
         {
@@ -70,8 +94,14 @@ namespace harmony
         };
     }
 
-   
-    inline predicate brightness_range(int min_brightness, int max_brightness)
+    /**
+     * Return a predicate that matches scales whose brightness falls within
+     * the given inclusive range.
+     *
+     * @param min_brightness  Lower bound on brightness.
+     * @param max_brightness  Upper bound on brightness.
+     */
+    inline auto brightness_range(int min_brightness, int max_brightness)
     {
       return [min_brightness, max_brightness](const structure& s)
         {
@@ -79,77 +109,37 @@ namespace harmony
         };
     }
 
-
-
-    /**
-   * Logical AND composition: both predicates must be true
-   */
-    inline predicate operator&&(const predicate& a, const predicate& b)
+  //***************************************************************************
+  // Predicate combinators implementations
+  //***************************************************************************
+    template<structure_predicate A, structure_predicate B>
+    inline auto operator&&(A a, B b) //can i pass by const reference predicate?
     {
-      return [a, b](const structure& s)
+      return[a, b](const structure& s)
         {
           return a(s) && b(s);
         };
     }
 
-    /**
-     * Logical OR composition: either predicate must be true
-     */
-    inline predicate operator||(const predicate& a, const predicate& b)
+    template<structure_predicate A, structure_predicate B>
+    inline auto operator||(A a, B b) //can i pass by const reference predicate?
     {
-      return [a, b](const structure& s)
+      return[a, b](const structure& s)
         {
           return a(s) || b(s);
         };
     }
 
-    /**
-     * Logical NOT composition: negates the predicate
-     */
-    inline predicate operator!(const predicate& a)
+    template<structure_predicate A>
+    inline auto operator!(A a) //can i pass by const reference predicate?
     {
-      return [a](const structure& s)
+      return[a](const structure& s)
         {
           return !a(s);
         };
     }
+  //****************************************************************************
+ } // namespace query
+} // namespace harmony
+//****************************************************************************
 
-    //find_first()
-
-    /**
-     * Find all scales in the database matching a predicate
-     * @param pred The predicate to filter scales
-     * @return Vector of all matching scales
-     */
-    //template<typename predicate>
-     /* requires requires(predicate p, scale_entry s)
-    {
-      p(s);
-    }*/ 
-    [[nodiscard]]inline std::vector<scale_entry> find_all(const predicate& pred)
-    {
-      std::vector<scale_entry> result;
-
-      for (const auto& entry : scale_database::catalog())
-      {
-        if (pred(entry.pattern))
-        {
-          result.push_back(entry);
-        }
-      }
-
-      return result;
-    }
-
-
-
-    // std::vector<scale_entry>find_all_2(const predicate& pred);
-    // // impl in cpp where db sits
-    // /*
-    // all code out-of line
-
-    // */
-
-
-  }
-}

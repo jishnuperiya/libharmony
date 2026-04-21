@@ -37,28 +37,27 @@ namespace harmony{
 
   public:                   // Operations
     scale                     make_scale(note root)       const; 
-    structure                 mode(int degree)            const;
+    structure                 mode(int degree)            const; //? should the mode() return scale_entry struct? 
+                                                                 //? and name can be std::optional. and add a fn in 
 
   public:                   // Queries
-    int                       cardinality()             const;
+    int                       cardinality()               const;
     bool                      contains(int interval)      const;
-    //bool                      is_rotationally_symmetric() const;
-    bool                      has_tritone()               const; //should i need queries for maj3, min3 etc. so each interval qualities? or do i calclulate it on spot??
-    //bool                      is_maximally_even()         const;
+    bool                      has_tritone()               const; 
     int                       brightness()                const;
-    //get name
+    //? get name?
+
   private:                  // Helper functions
     static std::bitset<12>    build_intervals(std::initializer_list<int> pattern);
 
   private:                  // Representation
     std::bitset<12>           intervals_; 
-    //name
-    // 
+    //? add name?
+   
+    //! adding name property in structure has some issues
+    // mode() create a struture programmatically - what name does it gets?
   
-    // QUESTION:
-    // when we design value types/ types with value semantics, does it make sense to make intervals_ const?? 
-    // scott meyers says make everything const if pssible.
-    // but it will break assignment operations right? also move..
+   
   };
 //****************************************************************************
 } // namespace harmony

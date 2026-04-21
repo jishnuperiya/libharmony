@@ -1,4 +1,4 @@
-//******** Copyright © 2025 Jishnu Periya, Jonathon Bell. All rights reserved.
+//******** Copyright ï¿½ 2025 Jishnu Periya, Jonathon Bell. All rights reserved.
 //*
 //*
 //*  Version : $Header:$
@@ -9,7 +9,7 @@
 //*
 //****************************************************************************
 
-#pragma once
+
 #include "progression.hpp"
 
 using namespace harmony;

@@ -51,6 +51,8 @@ add_library(harmony-lib STATIC
   src/progression.cpp
   src/structure.cpp 
   src/scale.cpp
+  src/scale_database.cpp
+  src/scale_query.cpp
   )
 
 target_link_libraries(harmony-lib)
