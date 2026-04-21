@@ -13,13 +13,15 @@
 
 #include <initializer_list>  // For initializer_list
 #include <bitset>            // For bitset
+#include <optional>          // For optional
+#include <string_view>       // For string_view
 
 #include "scale.hpp"
 
 //****************************************************************************
 namespace harmony{
 //****************************************************************************
-
+  struct mode_result;
   /**
    * Represents a harmonic structure defined by a set of intervals.
    * 
@@ -29,36 +31,40 @@ namespace harmony{
    */
   class structure 
   {
-  public:                   // Construction
-                              structure() = default;
-                              structure(std::initializer_list<int> pattern);
-                              structure(std::bitset<12> bits);
+  public:                         // Construction
+                                     structure();
+                                     structure(std::initializer_list<int> pattern);
+                                     structure(std::bitset<12> bits);
+
+  public:                         // Operations
+    bool                             operator==(const structure& other) const;
+    scale                            make_scale(note root)       const; 
+    std::optional<mode_result>       mode(int degree)            const; 
+    
+  public:                         // Queries
+    int                              cardinality()               const;
+    bool                             contains(int interval)      const;
+    bool                             has_tritone()               const; 
+    int                              brightness()                const;
+
+  public:                         // Name Accessors
+    void                             set_name(std::string_view n);
+    void                             clear_name();
+    std::optional<std::string_view>  name()                      const;
 
 
-  public:                   // Operations
-    scale                     make_scale(note root)       const; 
-    structure                 mode(int degree)            const; //? should the mode() return scale_entry struct? 
-                                                                 //? and name can be std::optional. and add a fn in 
-
-  public:                   // Queries
-    int                       cardinality()               const;
-    bool                      contains(int interval)      const;
-    bool                      has_tritone()               const; 
-    int                       brightness()                const;
-    //? get name?
-
-  private:                  // Helper functions
-    static std::bitset<12>    build_intervals(std::initializer_list<int> pattern);
-
-  private:                  // Representation
-    std::bitset<12>           intervals_; 
-    //? add name?
-   
-    //! adding name property in structure has some issues
-    // mode() create a struture programmatically - what name does it gets?
+  private:                        // Representation
+    std::bitset<12>                  intervals_; 
+    std::optional<std::string_view>  name_;
   
-   
   };
+
+  struct mode_result
+  {
+    structure mode_structure;
+    std::optional<std::string_view> mode_name;
+  };
+
 //****************************************************************************
 } // namespace harmony
 //****************************************************************************

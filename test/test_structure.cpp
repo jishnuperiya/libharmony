@@ -114,10 +114,10 @@ TEST_CASE("structure: mode(1) returns identity")
   rc::check("first mode produces same scale as original",
     [](const harmony::structure& s, const harmony::note& root)
     {
-      structure mode1 = s.mode(1);
+      auto mode1 = s.mode(1);
 
       scale original = s.make_scale(root);
-      scale mode1_scale = mode1.make_scale(root);
+      scale mode1_scale = mode1->mode_structure.make_scale(root);
 
       RC_ASSERT(original.get_notes() == mode1_scale.get_notes());
     });
@@ -132,8 +132,8 @@ TEST_CASE("structure: mode preserves cardinality")
 
       for (size_t degree = 1; degree <= original_size && degree <= 12; ++degree)
       {
-        structure mode = s.mode(static_cast<int>(degree));
-        scale mode_scale = mode.make_scale(note{ 0 });
+        auto mode = s.mode(static_cast<int>(degree));
+        scale mode_scale = mode->mode_structure.make_scale(note{ 0 });
 
         RC_ASSERT(mode_scale.get_notes().size() == original_size);
       }
@@ -201,9 +201,9 @@ TEST_CASE("structure: chromatic scale")
 TEST_CASE("structure: dorian mode")
 {
   structure major{ 0, 2, 4, 5, 7, 9, 11 };
-  structure dorian = major.mode(2);
+  auto dorian = major.mode(2);
 
-  scale dorian_scale = dorian.make_scale(note{ 0 });
+  scale dorian_scale = dorian->mode_structure.make_scale(note{ 0 });
 
   CHECK(dorian_scale.get_notes().contains(note{ 2 }));
   CHECK(dorian_scale.get_notes().contains(note{ 3 }));

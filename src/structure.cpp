@@ -13,58 +13,85 @@
 #include <assert.h>             // For assert
 #include <bitset>               // For bitset
 #include <bit>                  // For rotl
+#include<optional>              // For optional
 
 #include<iostream>
 
 
 #include <scale.hpp>
 #include <structure.hpp>
+#include <scale_database.hpp>
 
 //****************************************************************************
 namespace harmony{
 //****************************************************************************
 
-  /**
+  namespace
+  {
+    /**
      * Build a bitset of intervals from a pattern.
      *
-     * Static helper that normalizes all intervals to [0, 11] and ensures
+     * TU-local helpers, internal linkage, no need to make it as
+     * a static helper function and expose to client in header
+     * 
+     *  normalizes all intervals to [0, 11] and ensures
      * the invariant that bit 0 (root note) is always present.
      *
      * @param pattern The interval pattern to normalize
      * @return Constructed bitset with all intervals set
      */
-  std::bitset<12> structure::build_intervals(std::initializer_list<int> pattern)
-  {
-    std::bitset<12> result;
-    result.set(0); // Invariant: always contains root
-    for (auto interval : pattern)
+    std::bitset<12> build_intervals(std::initializer_list<int> pattern)
     {
-      // normalize interval to [0, 11] 
-      result.set(static_cast<std::size_t>((interval % 12 + 12) % 12));
+      std::bitset<12> result;
+      for (auto interval : pattern)
+      {
+        // normalize interval to [0, 11] 
+        result.set(static_cast<std::size_t>((interval % 12 + 12) % 12));
+      }
+      return result;
     }
-    return result;
   }
-/**
-  * Construct a harmonic structure from a list of intervals.
-  *
-  * Each interval is an integer representing the number of semitones above the root note.
-  * Valid intervals are in the range [0, 11].
-  *
-  * @param pattern An initializer list of intervals defining the harmonic structure.
-  */
-  structure::structure(std::initializer_list<int> pattern)
-    :intervals_(build_intervals(pattern))
-  {
-  }
-
-/**
+  
+  /**
   * Construct structure from a bitset of intervals.
-  *
+  * 
+  * Canonical ctor enforces invariant: bit 0 (root) is always set
+  * 
   * @param bits A bitset<12> where each bit represents an interval [0, 11]
   */
   structure::structure(std::bitset<12>bits)
     : intervals_(bits)
   {
+    intervals_.set(0);
+  }
+
+ /**
+  * Default construct a structure (delegates to bitset ctor which enforces invariant).
+  */
+  structure::structure()
+    : structure(std::bitset<12>{})
+  {
+  }
+
+/**
+  * Construct a harmonic structure from a list of intervals.
+  *
+  * Each interval is an integer representing the number of semitones above the root note.
+  * Valid intervals are in the range [0, 11].
+  * 
+  * Delegated initializer_list to the canonical bitset ctor so the pattern is preserved.
+  *
+  * @param pattern An initializer list of intervals defining the harmonic structure.
+  */
+  structure::structure(std::initializer_list<int> pattern)
+    :structure(build_intervals(pattern))
+  {
+  }
+
+  // structural equality: compare underlying bitsets
+  bool structure::operator==(const structure& other) const
+  {
+    return intervals_ == other.intervals_;
   }
 
 /**
@@ -90,25 +117,22 @@ namespace harmony{
     return { root, notes};
   }
 
-  structure structure::mode(int degree) const
+  std::optional<mode_result> structure::mode(int degree) const
   {
-    //Finding the degree-th set bit
-    int pivot = -1;
-    
-    // QUESTION:
-    // i have added -1 here for the assertion if pivot not found 
-    // claude code says: i could use std::optional<int> pivot instead of -1 for clear intent.
-    // but then i have to use exception instead of assertion.
-    // modern c++ has these kind of nice things - but what is your philosophy on this? 
-    // i heard john carmack says he still like c with classes kind of style because then he knows what 
-    // are the cost are instead of relying on abstractions..not trying to inherit opinions but i want to 
-    // what you think
+    if (degree <= 0 || degree > cardinality())
+    {
+      assert(false);
+      return std::nullopt;
+    }
+
     int count = 0;
+    std::optional<int> pivot; 
+
     for (size_t i = 0; i < 12; ++i)
     {
       if (intervals_.test(i))
       {
-        count++;
+        ++count;
         if (count == degree)
         {
           pivot = static_cast<int>(i);
@@ -116,19 +140,23 @@ namespace harmony{
         }
       }
     }
-    assert(pivot >= 0 && "Mode degree out of range");
-    
-    // QUESTION:
-    // i am still not getting a clear decision taking ability between assertion and throw. 
-    // because of these 2 things:
-    // - assertions are disabled in runtime and for that throw is better
-    // - but user of this API would be probably other programmers-- so for them assertions are enough??
-  
-    // QUESTION: is throwing exceptions bad? 
-    auto rotated = (intervals_ >> pivot) | (intervals_ << (12 - pivot));
 
-    return structure(rotated);
+    if (!pivot)
+    {
+      return std::nullopt;
+    }
+      
+    auto rotated = structure((intervals_ >> pivot.value()) | (intervals_ << (12 - pivot.value())));
+
+    for (const auto& entry : scale_database::catalog())
+    {
+      if (entry.pattern == rotated)
+      {
+        return mode_result(rotated, std::optional<std::string_view>{entry.name});
+      }
+    }
  
+    return  mode_result{rotated, std::optional<std::string_view>{} };
   }
 
   int structure::cardinality() const
@@ -146,10 +174,13 @@ namespace harmony{
     return contains(6);
   }
 
-  // Based on the theories of B P Leonard, Brightness is a 
-  // measurement of interval content calculated by taking the sum of 
-  // each tone's distance from the root
-  int structure::brightness() const   // think: can i optimize this??
+  /**
+   * Based on the theories of B P Leonard, Brightness is a 
+   * measurement of interval content calculated by taking the sum of 
+   * each tone's distance from the root
+   *
+   */
+  int structure::brightness() const  
   {
     int brightness = 0;
     for (int i = 0; i < 12; ++i)
@@ -160,6 +191,25 @@ namespace harmony{
       }
     }
     return brightness;
+  }
+
+  void structure::set_name(std::string_view n)
+  {
+    name_.emplace(n);
+  }
+
+  void structure::clear_name()
+  {
+    name_.reset();
+  }
+
+  std::optional<std::string_view> structure::name() const
+  {
+    if (name_)
+    {
+      return std::string_view{ name_->data(),name_->size() };
+    }
+    return std::nullopt;
   }
 
 //****************************************************************************
