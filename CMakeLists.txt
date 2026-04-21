@@ -53,6 +53,7 @@ add_library(harmony-lib STATIC
   src/scale.cpp
   src/scale_database.cpp
   src/scale_query.cpp
+  src/scale_catalog_visitor.cpp
   )
 
 target_link_libraries(harmony-lib)

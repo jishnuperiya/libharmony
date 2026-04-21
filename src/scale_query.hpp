@@ -28,7 +28,8 @@ namespace harmony{
     template<typename P>
     concept structure_predicate = std::is_invocable_r_v<bool, P, const structure&>;
 
-    using optional_scale_entry = std::optional<const scale_entry&>;
+    using optional_scale_entry = std::optional< std::reference_wrapper<const scale_entry>>;
+    //todo: why use std::reference_wrapper and not scale_entry& - why one safe over other
 
                               // Predicate factories
 
